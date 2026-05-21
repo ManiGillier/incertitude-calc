@@ -105,6 +105,19 @@ struct number mult(struct number n1, struct number n2)
     };
     return n;
 }
+struct number div(struct number n1, struct number n2)
+{
+    double nll = n1.low / n2.low;
+    double nlh = n1.low / n2.high;
+    double nhl = n1.high / n2.low;
+    double nhh = n1.high / n2.high;
+    
+    struct number n = {
+        .low = min(nll, nlh, nhl, nhh),
+        .high = max(nll, nlh, nhl, nhh),
+    };
+    return n;
+}
 
 void print_number(struct number n)
 {
@@ -115,13 +128,13 @@ void print_number(struct number n)
 
 int main()
 {
-    struct number n_2 = get_strict_number(2);
-    struct number L = get_number(143, 3);
-    struct number l = get_number(5.7, 2);
+    struct number m = get_number(6.17, 3);
+    struct number M = get_number(248.2, 4);
+    struct number V = get_number(0.1500, 4);
 
-    print_number(n_2);
-    print_number(L);
-    print_number(l);
-    print_number(mult(n_2, add(L, l)));
+    print_number(m);
+    print_number(M);
+    print_number(V);
+    print_number(div(m, mult(M, V)));
     return 0;
 }
