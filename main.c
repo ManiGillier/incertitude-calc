@@ -18,7 +18,7 @@ struct number get_strict_number(double real)
 struct number get_number(double real, uint8_t sig)
 {
     sig--;
-    uint8_t sign = real < 0.0 ? -1.0 : 1.0;
+    double sign = real < 0.0 ? -1.0 : 1.0;
     int right_shift = 0;
     int left_shift = 0;
 
